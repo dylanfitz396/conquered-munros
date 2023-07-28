@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { FruitContextProvider } from './context/fruit'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,7 +20,11 @@ export default function RootLayout({
       <head>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"></link>
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <FruitContextProvider>
+          {children}
+        </FruitContextProvider>
+        </body>
     </html>
   )
 }

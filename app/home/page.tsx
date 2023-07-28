@@ -5,6 +5,7 @@ import Modal from "../../components/Modal";
 import Navbar from "../../components/Navbar";
 import { Fruit } from "../types";
 import useFruit from "../hooks/useFruit";
+import { FruitContextType, useFruitContext } from "../context/fruit";
 
 const defaultFruit = {
   name: '',
@@ -22,8 +23,8 @@ const defaultFruit = {
 }
 
 export default function Home() {
+  const { allFruit } = useFruitContext() as FruitContextType;
   const [selectedFruit, setSelectedFruit] = useState<Fruit>(defaultFruit);
-  const [allFruit, setAllFruit] = useState<Array<Fruit>>([]);
   const [showModal, setShowModal] = useState(false);
 
   const handleButtonClick = (fruit: Fruit) => {
@@ -31,7 +32,7 @@ export default function Home() {
     setShowModal(true);
   }
 
-  useFruit(setAllFruit);
+  useFruit();
 
   return (
     <main className="flex min-h-screen flex-col items-center p-24">

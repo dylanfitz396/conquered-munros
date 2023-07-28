@@ -1,5 +1,6 @@
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { useEffect } from "react";
 import { Fruit } from "../types";
+import { FruitContextType, useFruitContext } from "../context/fruit";
 
 const alphabeticallyOrderFruit = (fruitData: Array<Fruit>) => fruitData.sort(function (a: Fruit, b: Fruit) {
     if (a.name < b.name) {
@@ -11,7 +12,9 @@ const alphabeticallyOrderFruit = (fruitData: Array<Fruit>) => fruitData.sort(fun
     return 0;
   });
 
-const useFruit = (setAllFruit: Dispatch<SetStateAction<Array<Fruit>>>) => {
+const useFruit = () => {
+  const fruitContext = useFruitContext() as FruitContextType;
+  const { setAllFruit } = fruitContext;
     useEffect(() => {
         const fetchData = async () => {
           const res = await fetch('https://www.fruityvice.com/api/fruit/all');
