@@ -1,17 +1,18 @@
 import Link from "next/link";
-import { MouseEventHandler } from "react";
+import { usePathname } from 'next/navigation';
 
 interface NavItemProps {
-    handleClick: MouseEventHandler<HTMLAnchorElement>;
     href: string;
     text: string;
-    isSelected: boolean;
 }
 
-const NavItem = ({handleClick, href, text, isSelected}: NavItemProps) => {
+const NavItem = ({href, text}: NavItemProps) => {
+    const currentRoute = usePathname();
+
+    const isSelected = currentRoute === href;
     return (
         <li>
-            <Link onClick={handleClick} href={href} className={`${isSelected ? 'md:text-blue-700' : 'text-gray-900'} block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700`}>{text}</Link>
+            <Link href={href} className={`${isSelected ? 'md:text-blue-700' : 'text-gray-900'} block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700`}>{text}</Link>
         </li>
     )
 }

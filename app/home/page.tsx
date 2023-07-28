@@ -4,7 +4,7 @@ import { useState } from "react";
 import Modal from "../../components/Modal";
 import Navbar from "../../components/Navbar";
 import { Fruit } from "../types";
-import useFruit from "../hooks/useFruit";
+import useFetchFruit from "../hooks/useFetchFruit";
 import { FruitContextType, useFruitContext } from "../context/fruit";
 
 const defaultFruit = {
@@ -32,7 +32,7 @@ export default function Home() {
     setShowModal(true);
   }
 
-  useFruit();
+  useFetchFruit();
 
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
